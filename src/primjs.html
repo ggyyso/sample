@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="./js/prism.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <script src="./js/prism.js"></script>
+    <pre>
+    <code class="language-HTML">
+ &lt!doctype html>
+&lthtml lang="en">
+
+&lthead>
+    &ltmeta charset="utf-8">
+    &ltlink rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/css/ol.css" type="text/css">
+    &ltstyle>
+        .map {
+            width: 100%;
+            height: 700px;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+            background: #ececec;
+        }
+
+        #zoom {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 110px;
+            height: 20px;
+            border: solid 1px #999;
+            background-color: rgba(227, 233, 238, .6);
+            z-index: 2000;
+            padding: 2px;
+            text-align: center;
+        }
+    &lt/style>
+    &ltscript src="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.15.1/build/ol.js">&lt/script>
+    &lttitle>OpenLayers example&lt/title>
+&lt/head>
+
+&ltbody>
+    &lt!-- &lth2>My Map&lt/h2> -->
+    &ltdiv id="map" class="map">&lt/div>
+    &ltdiv id="source">查看源码&lt/div>
+    &ltdiv id="zoom">当前级别&lti id="zoomValue">&lt/i>
+    &lt/div>
+
+    &ltscript type="text/javascript">
+        const url =
+            //"https://services.arcgisonline.com/arcgis/rest/services/USA_Topo_Maps/MapServer";
+            "http://localhost:8085/YouMapServer/rest/service/China/MapServer/export/ol/MapServer";
+        const layers = [
+            // new ol.layer.Tile({
+            //     source: new ol.source.OSM(),
+            // }),
+            new ol.layer.Image({
+                source: new ol.source.ImageArcGISRest({
+                    ratio: 1,
+                    params: {},
+                    url: url,
+                }),
+            }),
+        ];
+
+        var map = new ol.Map({
+            target: 'map',
+            layers: layers,
+            view: new ol.View({
+                center: ol.proj.fromLonLat([108.41, 35.82]),
+                zoom: 4
+            })
+        });
+
+        map.on("moveend", function (e) {
+            var zoom = map.getView().getZoom();  //获取当前地图的缩放级别
+            document.getElementById("zoomValue").innerText = zoom.toFixed(1);
+        });
+    &lt/script>
+&lt/body>
+
+&lt/html>
+    </code>
+    </pre>
+
+
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>栅格瓦片切换</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="keyword1,keyword2,keyword3">
+    <meta name="description" content="this is my page">
+    <meta name="content-type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://ahocevar.com/geoserver/gwc/rest/web/openlayers3/ol.css" type="text/css">
+    <style>
+        .map {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .buttons {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            float: left;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        .buttons>li {
+            background: #990033;
+            list-style-type: none;
+            height: 25px;
+            color: white;
+            padding: 5px;
+        }
+
+        body {
+            margin: 0px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div id="map" class="map"></div>
+</body>
+<script src="https://ahocevar.com/geoserver/gwc/rest/web/openlayers3/ol.js"></script>
+<script type="text/javascript">
+    const layers = [
+        new ol.layer.Tile({
+            source: new ol.source.TileWMS({
+                url: 'https://ahocevar.com/geoserver/wms',
+                params: {
+                    'LAYERS': 'ne:NE1_HR_LC_SR_W_DR',
+                    'TILED': true,
+                },
+            }),
+        }),
+    ];
+
+
+    var map = new ol.Map({
+      
+        layers: layers,
+
+        target: "map",
+        view: new ol.View({
+            projection: 'EPSG:4326',
+            center: [0, 0],
+            zoom: 1
+        })
+    });
+</script>
+
+</html>

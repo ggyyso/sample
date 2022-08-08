@@ -70,41 +70,29 @@
         </div>
 
         <script type="text/javascript">
-            const url =
-                //"https://services.arcgisonline.com/arcgis/rest/services/USA_Topo_Maps/MapServer";
-                "http://localhost:8085/YouMapServer/rest/service/China/MapServer/export/ol/MapServer";
-            const layers = [
-                // new ol.layer.Tile({
-                //     source: new ol.source.OSM(),
-                // }),
-                new ol.layer.Image({
-                    source: new ol.source.ImageArcGISRest({
-                        ratio: 1,
-                        params: {},
-                        url: url,
-                    }),
-                }),
-            ];
-
-            var map = new ol.Map({
+            const map = new ol.Map({
                 target: 'map',
-                layers: layers,
+                layers: [
+                    new ol.layer.MapboxVector({
+                        styleUrl: 'http://10.61.120.110:8080/YouMapServer/rest/service/sxxzqh/VectorTileServer/styles/default.json',
+                        token:'pefUT9B37aWuzjsA',
+                    }),
+                ],
                 view: new ol.View({
-
-                    //  center:[108, 35],
-                    projection: 'EPSG:4326',
-                    // zoom: 4
-                })
+                    projection: 'EPSG:3857',
+                    center: [12189818.200335836,4503700.773378248],
+                    zoom: 6,
+                }),
             });
-            let extent = [60.59, 10.98, 134.69, 54.36]
-            map.getView().fit(extent);
+            // let extent = [60.59, 10.98, 134.69, 54.36]
+            // map.getView().fit(extent);
             // map.zoomToExtent([[101.41, 31.82],[108.41, 50.82]]);
             map.on("moveend", function (e) {
                 var zoom = map.getView().getZoom();  //获取当前地图的缩放级别
                 document.getElementById("zoomValue").innerText = zoom.toFixed(1);
             });
             map.on("pointermove", function (e) {
-                let coor = ol.proj.transform(e.coordinate, 'EPSG:4326', 'EPSG:4326');
+                let coor = ol.proj.transform(e.coordinate, 'EPSG:3857', 'EPSG:4326');
                 document.getElementById("coord").innerText = coor[0].toFixed(4) + "," + coor[1].toFixed(4);
             });
 

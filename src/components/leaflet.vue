@@ -2,40 +2,50 @@
   <div>
     <div
       id="menu"
-      style="position: absolute; top:20px;left:100px;z-index: 2 ;padding: 5px; background-color:white;text-align: left;"
+      style="
+        position: absolute;
+        top: 20px;
+        left: 100px;
+        z-index: 2;
+        padding: 5px;
+        background-color: white;
+        text-align: left;
+      "
     >
       <div>
-
         <router-link to="/home"> home </router-link>
         <router-link to="/"> map </router-link>
         <router-link to="/about"> about </router-link>
-
       </div>
       <a-button
         type="primary"
-        style="display: none;"
+        style="display: none"
         class="btn"
-        @click="showCoord2Pile=!showCoord2Pile"
-      >坐标->桩号</a-button>
+        @click="showCoord2Pile = !showCoord2Pile"
+        >坐标->桩号</a-button
+      >
       <a-button
         type="primary"
         class="btn"
-        @click="showPile2Coord=!showPile2Coord"
-      >桩号->坐标</a-button>
-      <a-button
-        type="primary"
-        class="btn"
-      >桩号区间线路</a-button>
-      <a-button
-        type="primary"
-        class="btn"
-      >沿线设施查询</a-button>
+        @click="showPile2Coord = !showPile2Coord"
+        >桩号->坐标</a-button
+      >
+      <a-button type="primary" class="btn">桩号区间线路</a-button>
+      <a-button type="primary" class="btn">沿线设施查询</a-button>
     </div>
 
     <!-- 坐标转桩号 -->
     <div
       id="coord2Pile"
-      style="position: absolute; top:100px;left:100px;z-index: 2 ;padding: 5px; background-color:white;text-align: left; "
+      style="
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        z-index: 2;
+        padding: 5px;
+        background-color: white;
+        text-align: left;
+      "
       v-show="showCoord2Pile"
     >
       当前坐标：<br />
@@ -43,78 +53,96 @@
       <a-input
         id="x"
         placeholder="经度"
-        v-bind:value='this.nowPoint.x'
+        v-bind:value="this.nowPoint.x"
         class="input"
-        style=" width: 150px;"
-      > </a-input><br />
+        style="width: 150px"
+      >
+      </a-input
+      ><br />
       <label>y:</label>
       <a-input
         placeholder="纬度"
         id="y"
-        v-bind:value='this.nowPoint.y'
+        v-bind:value="this.nowPoint.y"
         class="input"
-        style=" width: 150px;"
-      > </a-input>
-      <a-button
-        type="primary"
-        @click="getUserAccount"
-      >查询</a-button><br />
-      <label>{{msg}}</label>
+        style="width: 150px"
+      >
+      </a-input>
+      <a-button type="primary" @click="getUserAccount">查询</a-button><br />
+      <label>{{ msg }}</label>
     </div>
 
     <!-- 桩号转坐标 -->
     <div
       id="pile2Coord"
-      style="position: absolute; top:100px;left:100px;z-index: 2 ;padding: 5px; background-color:white;text-align: left; width: 300px;"
+      style="
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        z-index: 2;
+        padding: 5px;
+        background-color: white;
+        text-align: left;
+        width: 300px;
+      "
       v-show="showPile2Coord"
     >
       <a-input
         id="lxbm"
         placeholder="道路编码或名称"
-        v-bind:value='this.lxbm'
+        v-bind:value="this.lxbm"
         class="input"
-        style=" width: 150px;"
-      > </a-input>
-      <a-button
-        type="primary"
-        @click="getpile2Coord"
-      >查询</a-button><br />
-      <label>{{msg}}</label>
+        style="width: 150px"
+      >
+      </a-input>
+      <a-button type="primary" @click="getpile2Coord">查询</a-button><br />
+      <label>{{ msg }}</label>
     </div>
 
     <!-- 桩号间道路查询 -->
     <div
       id="pileInnerRoad"
-      style="position: absolute; top:100px;left:100px;z-index: 2 ;padding: 5px; background-color:white;text-align: left; width: 300px;"
+      style="
+        position: absolute;
+        top: 100px;
+        left: 100px;
+        z-index: 2;
+        padding: 5px;
+        background-color: white;
+        text-align: left;
+        width: 300px;
+      "
       v-show="showPileInnerRoad"
     >
       <a-input
         id="lxbm"
         placeholder="道路编码或名称"
-        v-bind:value='this.pile'
+        v-bind:value="this.pile"
         class="input"
-        style=" width: 150px;"
-      > </a-input>
+        style="width: 150px"
+      >
+      </a-input>
       <a-input
         id="startPile"
         placeholder="起始桩号"
-        v-bind:value='this.startPile'
+        v-bind:value="this.startPile"
         class="input"
-        style=" width: 150px;"
-      > </a-input>
+        style="width: 150px"
+      >
+      </a-input>
       <a-input
         id="endPile"
         placeholder="终止桩号"
-        v-bind:value='this.endPile'
+        v-bind:value="this.endPile"
         class="input"
-        style=" width: 150px;"
-      > </a-input>
-      <a-button
-        type="primary"
-        @click="getPileInnerRoad"
-      >查询</a-button><br />
-      <label>{{msg}}</label>
+        style="width: 150px"
+      >
+      </a-input>
+      <a-button type="primary">查询</a-button><br />
+      <label>{{ msg }}</label>
     </div>
+   
+
     <div id="map"></div>
   </div>
 </template>
@@ -126,6 +154,8 @@ import * as L from "leaflet";
 import "leaflet.pm";
 import "leaflet.pm/dist/leaflet.pm.css";
 import axios from "axios";
+import CryptoJS from "crypto-js";
+
 
 // axios.defaults.withCredentials = true;
 // axios.defaults.crossDomain = true;
@@ -143,11 +173,20 @@ export default {
   name: "leaflet",
   data() {
     return {
+      uploadImg: [],
       map: "",
-      nowPoint: { x: 0, y: 0 },
+      nowPoint: {
+        x: 0,
+        y: 0,
+      },
       pile: "",
       showCoord2Pile: false,
       showPile2Coord: false,
+      startPile: 1102,
+      endPile: 1135,
+      showPileInnerRoad: false,
+      lxbm: "G20",
+      src: "../assets/16362.png",
     };
   },
   props: {
@@ -156,7 +195,9 @@ export default {
   mounted() {
     this.initmap();
   },
+  computed: {
 
+  },
   methods: {
     initmap() {
       this.map = L.map("map", {
@@ -201,8 +242,10 @@ export default {
       //设置显示语言
       this.map.pm.setLang("zh");
       this.getlatLngs();
-    },
 
+      this.encryptDo();
+    },
+   
     // 获取绘制的坐标
     getlatLngs() {
       // debugger;
@@ -246,7 +289,9 @@ export default {
     getUserAccount() {
       //创建实例时设置配置的默认值
       const httpHandler = axios.create({
-        headers: { "Content-Type": "application/json;charset=utf-8" }, //即将被发送的自定义请求头
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        }, //即将被发送的自定义请求头
         withCredentials: false, //表示跨域请求时是否需要使用凭证
       });
       let uri =
@@ -267,7 +312,9 @@ export default {
 
     getpile2Coord() {
       const httpHandler = axios.create({
-        headers: { "Content-Type": "application/json;charset=utf-8" }, //即将被发送的自定义请求头
+        headers: {
+          "Content-Type": "application/json;charset=utf-8",
+        }, //即将被发送的自定义请求头
         withCredentials: false, //表示跨域请求时是否需要使用凭证
       });
       let uri =
@@ -292,7 +339,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style lang="less" >
+<style lang="less">
 #map {
   position: absolute;
   width: 100%;
@@ -312,5 +359,33 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active, 2.1.8 版本以下 */ {
   opacity: 0;
+}
+.uploadFile {
+  display: flex;
+  position: relative;
+  height: 120px;
+  line-height: 120px;
+  padding: 10px 0;
+  border-bottom: 1px solid rgb(235, 235, 235);
+  overflow: hidden;
+  z-index: 2;
+}
+.uploadFile ul {
+  display: flex;
+}
+.uploadFile ul li {
+  margin-right: 10px;
+}
+.uploadFile .addPic img {
+  height: 100px;
+  width: 100px;
+}
+.uploadFile button {
+  height: 100px;
+  width: 100px;
+  font-size: 50px;
+  border: 1px dashed rgb(182, 182, 182);
+  color: rgb(182, 182, 182);
+  background-color: rgb(243, 243, 243);
 }
 </style>

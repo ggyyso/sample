@@ -16,6 +16,7 @@
     "ant-design-vue": "^1.7.8",
     "axios": "^0.24.0",
     "core-js": "^2.6.5",
+    "crypto-js": "^4.1.1",
     "leaflet": "^1.7.1",
     "leaflet.pm": "^2.2.0",
     "mapbox-gl": "2.6.0",
@@ -23,6 +24,7 @@
     "vega": "^5.17.0",
     "video.js": "^7.17.0",
     "vue": "^2.6.10",
+    "vue-axios": "^3.5.2",
     "vue-router": "^3.0.3",
     "vue-video-player": "^5.0.2"
   },
@@ -33,9 +35,9 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "vue-template-compiler": "^2.6.10",
     "less": "^3.0.4",
-    "less-loader": "^5.0.0"
+    "less-loader": "^5.0.0",
+    "vue-template-compiler": "^2.6.10"
   },
   "eslintConfig": {
     "root": true,

@@ -8,6 +8,7 @@ import cgcs from './components/mapboxgl4490.vue'
 import tdt from './components/mapboxglTdt.vue'
 import sandDance from './components/sandDance.vue'
 import olDynamic from './components/olDynamicLayer.vue'
+import encrypt from './components/encrypt.vue'
 Vue.use(Router)
 
 export default new Router({
@@ -18,6 +19,11 @@ export default new Router({
       path: '/',
       name: 'map',
       component: leaflet
+    },
+    {
+      path: '/en',
+      name: 'en',
+      component: encrypt
     },
     {
       path: '/home',
